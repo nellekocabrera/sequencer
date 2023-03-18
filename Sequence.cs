@@ -31,7 +31,7 @@ namespace Nico.Sequencing
         
 
         /// <summary>
-        ///     Call this method when your sequence has completed.
+        ///     Call this method when your sequence has completed
         /// </summary>
         internal void CompleteSequence()
         {

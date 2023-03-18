@@ -23,7 +23,7 @@ namespace Nico.Sequencing
 
 
         /// <summary>
-        ///     This method will be called once the sequencer has finished;
+        ///     This method will be called once the sequencer has finished
         /// </summary>
         protected abstract void OnSequenceComplete();
     }
