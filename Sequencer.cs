@@ -1,24 +1,30 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Nico.Sequencing
 {
-    public class Sequencer : MonoBehaviour
+    public abstract class Sequencer : MonoBehaviour
     {
-        [ SerializeField ] private List< Sequence > sequences = new List< Sequence >();
-
-        void Start()
+        /// <summary>
+        ///     Starts the sequence from the given sequence list.
+        /// </summary>
+        protected async void StartSequence( List< Sequence > sequenceList )
         {
-            StartSequence();
-        }
-
-        public async void StartSequence()
-        {
-            foreach( Sequence s in sequences )
+            foreach( Sequence sequence in sequenceList )
             {
-                await s.BeginSequence();
+                sequence.InitializeSequence();
+                await sequence.BeginSequence();
+                sequence.ExitSequence();
             }
+
+            OnSequenceComplete();
         }
+
+
+        /// <summary>
+        ///     This method will be called once the sequencer has finished;
+        /// </summary>
+        protected abstract void OnSequenceComplete();
     }
 }
